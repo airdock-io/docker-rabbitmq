@@ -2,6 +2,9 @@
 
 Docker Image for [RabbitMq](http://www.rabbitmq.com/) based on airdock/base:latest
 
+
+# NOT YET READY
+
 What is RabbitMQ?
 
 - Robust messaging for applications
@@ -25,13 +28,14 @@ Purpose of this image is:
 
 - [Docker RabbitMQ](https://registry.hub.docker.com/u/dockerfile/rabbitmq/dockerfile/)
 - [Log to Stdout](http://www.superpumpup.com/docker-rabbitmq-stdout)
-https://registry.hub.docker.com/u/dchusovitin/rabbitmq/
+- [RabbitMQ & Log](https://registry.hub.docker.com/u/dchusovitin/rabbitmq/)
+- [RabbitMQ Cluster](https://github.com/cthulhuology/docker-rabbitmq/blob/master/Dockerfile)
+- [Java Dzone article](http://java.dzone.com/articles/docker-rabbitmq-cluster)
+ 
 
+Start a Log Story
 
-http://java.dzone.com/articles/docker-rabbitmq-cluster
-https://github.com/cthulhuology/docker-rabbitmq/blob/master/Dockerfile
-https://elasticbox.com/blog/deploy-rabbitmq-docker-container-with-elasticbox/
-
+https://gowalker.org/github.com/digital-wonderland/docker-logstash-forwarder
 
 
 
