@@ -17,7 +17,7 @@ Purpose of this image is:
 
 - install RabbitMQ server (3.4.4.1 stable)
 - based on airdock/base:latest (debian)
-- enable RabbitMQ Admin Interface
+- enable RabbitMQ Admin Interface and other plugins
 
 
 > Name: airdock/rabbitmq
@@ -51,7 +51,7 @@ Execute rabbitmq server with default configuration:
 
 ### Run rabbitmq-server with persistent data directory.
 
-	docker run -d  -p 5672:5672 -p 15672:15672  -v /var/lib/rabbitmq:/var/lib/rabbitmq - --name rabbitmq airdock/rabbitmq 
+	docker run -d  -p 5672:5672 -p 15672:15672  -v /var/lib/rabbitmq:/var/lib/rabbitmq --name rabbitmq airdock/rabbitmq 
  
 
 Take care about your permission on host folder named '/var/lib/rabbitmq'.
@@ -63,15 +63,17 @@ So you should create an user with this uid:gid:
 
 ```
   sudo groupadd rabbitmq -g 4204
-  sudo useradd -u 4204  --no-create-home --system --no-user-group rabbitmq
+  sudo useradd -u 4204  --home-dir /var/lib/rabbitmq --create-home --system --no-user-group rabbitmq
   sudo usermod -g rabbitmq rabbitmq
 ```
 
-And then set owner and permissions on your host directory:
+### Run rabbitmq-server with persistent and log data directory.
 
-```
-	chown -R rabbitmq:rabbitmq /var/lib/rabbitmq
-```
+
+
+	docker run -d  -p 5672:5672 -p 15672:15672  -v /var/lib/rabbitmq:/var/lib/rabbitmq -v /var/log/rabbitmq:/var/log/rabbitmq --name rabbitmq airdock/rabbitmq 
+ 
+
 
 ## RabbitMQ Admin Interface
 
@@ -95,7 +97,29 @@ We have:
 This configuration use all default configuration from RabbitMQ, except this:
 
 - RabbitMQ to use fully qualified names to identify nodes. USE_LONGNAME true
-- The management plugin is enabled
+- set ulimit -S -n 65536 on startup
+- some plugins are enabled
+
+### Enabled plugins
+
+- rabbitmq_mqtt
+- rabbitmq_stomp
+- rabbitmq_management
+- rabbitmq_management_agent
+- rabbitmq_management_visualiser
+- rabbitmq_federation
+- rabbitmq_federation_management
+- sockjs
+
+### Exposed Port
+
+- AMQP: 5672
+- Management interface: 15672
+- epmd: 4369
+- inet_dist_listen_min: 9100
+- through: 9101
+- inet_dist_listen_max:  9102
+- ranges: 9103  9104 9105
 
 
 # Change Log
@@ -105,11 +129,10 @@ This configuration use all default configuration from RabbitMQ, except this:
 
 - add RabbitMQ Server
 - launch rabbit with rabbitmq:rabbitmq account
-- log to docker collector
-- expose port 15672 (Admin) and 5672 (RabbitMQ)
+- expose a list of RabbitMQ port 15672 (Admin) and 5672 (RabbitMQ), etc...
 - listen all addresses
 - data directory "/var/lib/rabbitmq" (from package)
-- add volume on and data folder (/var/lib/rabbitmq)
+- add volume on log and data folder (/var/lib/rabbitmq and /var/log/rabbitmq)
 
 
 
