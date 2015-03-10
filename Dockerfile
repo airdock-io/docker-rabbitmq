@@ -24,13 +24,13 @@ RUN curl https://www.rabbitmq.com/rabbitmq-signing-key-public.asc | apt-key add 
   echo "NODE_PORT=5672" > /etc/rabbitmq/rabbitmq-env.conf  && \
   echo "USE_LONGNAME=true" >> /etc/rabbitmq/rabbitmq-env.conf  && \
   echo "ulimit -S -n 65536" >> /etc/rabbitmq/rabbitmq-env.conf  && \
-  ln -sf /dev/stdout /var/log/rabbitmq/startup_log && \
-  ln -sf /dev/stderr /var/log/rabbitmq/startup_err && \
-  chown -R rabbitmq:rabbitmq /var/log/rabbitmq && \
   /root/post-install
 
 # Set WORKDIR
 WORKDIR /var/lib/rabbitmq
+
+# Set Home 
+ENV HOME /var/lib/rabbitmq
 
 # Data Folder
 VOLUME ["/var/lib/rabbitmq", "/var/log/rabbitmq"]
@@ -39,4 +39,4 @@ VOLUME ["/var/lib/rabbitmq", "/var/log/rabbitmq"]
 EXPOSE 5672 15672 4369 9100 9101 9102 9103 9104 9105
 
 # Define default command.
-CMD ["gosu", "rabbitmq:rabbitmq", "rabbitmq-server"]
+CMD ["gosu", "rabbitmq:rabbitmq", "/usr/lib/rabbitmq/bin/rabbitmq-server"]

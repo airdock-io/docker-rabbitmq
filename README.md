@@ -2,9 +2,6 @@
 
 Docker Image for [RabbitMq](http://www.rabbitmq.com/) based on airdock/base:latest
 
-
-# NOT YET READY
-
 What is RabbitMQ?
 
 - Robust messaging for applications
@@ -32,12 +29,6 @@ Purpose of this image is:
 - [RabbitMQ Cluster](https://github.com/cthulhuology/docker-rabbitmq/blob/master/Dockerfile)
 - [Java Dzone article](http://java.dzone.com/articles/docker-rabbitmq-cluster)
  
-
-Start a Log Story
-
-https://gowalker.org/github.com/digital-wonderland/docker-logstash-forwarder
-
-
 
 # Usage
 
@@ -68,7 +59,6 @@ So you should create an user with this uid:gid:
 ```
 
 ### Run rabbitmq-server with persistent and log data directory.
-
 
 
 	docker run -d  -p 5672:5672 -p 15672:15672  -v /var/lib/rabbitmq:/var/lib/rabbitmq -v /var/log/rabbitmq:/var/log/rabbitmq --name rabbitmq airdock/rabbitmq 
@@ -116,11 +106,7 @@ This configuration use all default configuration from RabbitMQ, except this:
 - AMQP: 5672
 - Management interface: 15672
 - epmd: 4369
-- inet_dist_listen_min: 9100
-- through: 9101
-- inet_dist_listen_max:  9102
-- ranges: 9103  9104 9105
-
+- inet_dist_listen_min through inet_dist_listen_max ranges: 9100, 9101, 9102, 9103, 9104, 9105
 
 # Change Log
 
@@ -133,7 +119,6 @@ This configuration use all default configuration from RabbitMQ, except this:
 - listen all addresses
 - data directory "/var/lib/rabbitmq" (from package)
 - add volume on log and data folder (/var/lib/rabbitmq and /var/log/rabbitmq)
-
 
 
 # Build

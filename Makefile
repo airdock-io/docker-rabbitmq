@@ -1,7 +1,7 @@
 NAME = airdock/rabbitmq
 VERSION = 1.0
 
-.PHONY: all clean build tag_latest release debug run run_client
+.PHONY: all clean build tag_latest release debug run
 
 all: build
 
