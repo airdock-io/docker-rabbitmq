@@ -12,7 +12,7 @@ What is RabbitMQ?
 
 Purpose of this image is:
 
-- install RabbitMQ server (3.4.4.1 stable)
+- install RabbitMQ server (3.3.5-1.1 stable)
 - based on airdock/base:latest (debian)
 - enable RabbitMQ Admin Interface and other plugins
 

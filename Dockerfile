@@ -10,7 +10,7 @@ FROM airdock/base:latest
 MAINTAINER Jerome Guibert <jguibert@gmail.com>
 
 # Installed Rabbitmq version
-ENV RABBITMQ_VERSION 3.4.4-1
+ENV RABBITMQ_VERSION 3.3.5-1.1
 
 # Install RabbitMQ
 # Create  rabbitmq-env.conf and rabbitmq.config
