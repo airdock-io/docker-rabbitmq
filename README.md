@@ -1,4 +1,4 @@
-# Docker RabbitMQ
+# Docker RabbitMQ [![](https://badge.imagelayers.io/airdock/rabbitmq:latest.svg)](https://imagelayers.io/?images=airdock/rabbitmq:latest 'Get your own badge on imagelayers.io')
 
 Docker Image for [RabbitMq](http://www.rabbitmq.com/) based on airdock/base:latest
 
