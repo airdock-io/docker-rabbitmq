@@ -1,5 +1,5 @@
 NAME = airdock/rabbitmq
-VERSION = dev
+VERSION = dev-3.6
 
 .PHONY: all clean build tag_latest release debug run
 

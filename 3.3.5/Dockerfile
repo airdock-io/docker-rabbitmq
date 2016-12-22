@@ -1,6 +1,6 @@
 # VERSION 1.0
 # AUTHOR:         Jerome Guibert <jguibert@gmail.com>
-# DESCRIPTION:    RabbitMQ Dockerfile for latest
+# DESCRIPTION:    RabbitMQ Dockerfile
 # TO_BUILD:       docker build --rm -t airdock/rabbitmq .
 # SOURCE:         https://github.com/airdock-io/docker-rabbitmq
 
@@ -9,13 +9,13 @@ FROM airdock/base:jessie
 
 MAINTAINER Jerome Guibert <jguibert@gmail.com>
 
-ENV RABBITMQ_VERSION 3.6.6-1
+ENV RABBITMQ_VERSION 3.3.5-1.1
 
 # Install RabbitMQ
 # Create  rabbitmq-env.conf and rabbitmq.config
 # enable list of plugins
 RUN apt-get update -qq && apt-get install -y --no-install-recommends ca-certificates && \
-  curl https://www.rabbitmq.com/rabbitmq-release-signing-key.asc | apt-key add - && \
+  curl https://www.rabbitmq.com/rabbitmq-signing-key-public.asc | apt-key add - && \
   echo "deb http://www.rabbitmq.com/debian/ testing main" > /etc/apt/sources.list.d/rabbitmq.list && \
   apt-get update -qq && apt-get install -y rabbitmq-server=$RABBITMQ_VERSION --no-install-recommends && \
   rabbitmq-plugins enable rabbitmq_mqtt rabbitmq_stomp rabbitmq_management  rabbitmq_management_agent rabbitmq_management_visualiser rabbitmq_federation rabbitmq_federation_management sockjs && \

@@ -1,6 +1,6 @@
-# Docker RabbitMQ [![](https://badge.imagelayers.io/airdock/rabbitmq:latest.svg)](https://imagelayers.io/?images=airdock/rabbitmq:latest 'Get your own badge on imagelayers.io')
+# Docker RabbitMQ [![](https://images.microbadger.com/badges/image/airdock/rabbitmq:latest.svg)](https://microbadger.com/images/airdock/rabbitmq:latest "Get your own image badge on microbadger.com")
 
-Docker Image for [RabbitMq](http://www.rabbitmq.com/) based on airdock/base:latest
+Docker Image for [RabbitMq](http://www.rabbitmq.com/) based on airdock/base:jessie
 
 What is RabbitMQ?
 
@@ -12,14 +12,16 @@ What is RabbitMQ?
 
 Purpose of this image is:
 
-- install RabbitMQ server (3.3.5-1.1 stable)
-- based on airdock/base:latest (debian)
+- install RabbitMQ server
+- based on airdock/base:jessie
 - enable RabbitMQ Admin Interface and other plugins
+- running on rabbitmq user account
+- use tini for process managment
 
 
 > Name: airdock/rabbitmq
 
-***Dependency***: airdock/base:latest
+***Dependency***: airdock/base:jessie
 
 ***Few links***:
 
@@ -29,8 +31,14 @@ Purpose of this image is:
 - [RabbitMQ Cluster](https://github.com/cthulhuology/docker-rabbitmq/blob/master/Dockerfile)
 - [Java Dzone article](http://java.dzone.com/articles/docker-rabbitmq-cluster)
 
+# Tags
+
+- latest, 3.6.6 -> [3.6.6-1](https://github.com/rabbitmq/rabbitmq-server/releases/tag/rabbitmq_v3_6_6)  [![](https://images.microbadger.com/badges/image/airdock/rabbitmq:latest.svg)](https://microbadger.com/images/airdock/rabbitmq:latest "Get your own image badge on microbadger.com")
+- 3.3.5 -> [3.3.5-1.1](http://previous.rabbitmq.com/v3_3_x/documentation.html)  [![](https://images.microbadger.com/badges/image/airdock/rabbitmq:3.3.5.svg)](https://microbadger.com/images/airdock/rabbitmq:3.3.5 "Get your own image badge on microbadger.com")
 
 # Usage
+
+## Launch RabbitMQ server
 
 You should have already install [Docker](https://www.docker.com/).
 
@@ -61,9 +69,9 @@ Don't forget to add your current user to this new group.
 
 ### Run rabbitmq-server with persistent and log data directory.
 
-
+```
 	docker run -d  -p 5672:5672 -p 15672:15672  -v /var/lib/rabbitmq:/var/lib/rabbitmq -v /var/log/rabbitmq:/var/log/rabbitmq --name rabbitmq airdock/rabbitmq
-
+```
 
 
 ## RabbitMQ Admin Interface
@@ -112,15 +120,30 @@ This configuration use all default configuration from RabbitMQ, except this:
 # Change Log
 
 
-## latest (current)
+## latest and 3.6 (current)
 
-- add RabbitMQ Server
+- add RabbitMQ Server 3.6.6-1
+- update rabbitmq-server public key
+- integrate tini
 - launch rabbit with rabbitmq:rabbitmq account
 - expose a list of RabbitMQ port 15672 (Admin) and 5672 (RabbitMQ), etc...
 - listen all addresses
 - data directory "/var/lib/rabbitmq" (from package)
 - add volume on log and data folder (/var/lib/rabbitmq and /var/log/rabbitmq)
 - MIT license
+
+## 3.3
+
+- integrate tini
+- add RabbitMQ Server 3.6.6-1
+- launch rabbit with rabbitmq:rabbitmq account
+- expose a list of RabbitMQ port 15672 (Admin) and 5672 (RabbitMQ), etc...
+- listen all addresses
+- data directory "/var/lib/rabbitmq" (from package)
+- add volume on log and data folder (/var/lib/rabbitmq and /var/log/rabbitmq)
+- MIT license
+
+
 
 # Build
 
